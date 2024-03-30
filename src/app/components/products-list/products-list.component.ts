@@ -1,13 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ApiService } from '../../services/api.service';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { WithLoadingPipe } from '../../pipes/with-loading.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { delay, map, of } from 'rxjs';
+import { delay, map, Observable, of, tap } from 'rxjs';
 import { Cake, CakeDTO } from '../../models/cake';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { mockCakes } from '../../models/mockData';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'ng-products-list',
@@ -53,21 +54,25 @@ import { mockCakes } from '../../models/mockData';
     }
   `,
 })
-export class ProductsListComponent {
+export class ProductsListComponent implements OnInit {
   #api = inject(ApiService);
+  #cart = inject(CartService);
 
-  products$ = of(mockCakes).pipe(
-    delay(2000),
-    map((cakes) =>
-      cakes.map(
-        (cake) =>
-          ({
-            ...cake,
-            ingredients: cake.ingredients.split(','),
-          } as Cake)
-      )
-    )
-  );
+  products$!: Observable<Cake[]>;
+
+  ngOnInit(): void {
+    this.checkProducts();
+  }
+
+  private checkProducts() {
+    if (!this.#cart.products) {
+      this.products$ = this.#api
+        .getProducts()
+        .pipe(tap((data) => (this.#cart.products = data)));
+    } else {
+      this.products$ = of(this.#cart.products);
+    }
+  }
 }
 
 //  cakes.map((cake) => ({
