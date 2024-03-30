@@ -17,7 +17,25 @@
     }
 
     @else {
-    <p>Quantity Input</p>
+    <mat-form-field class="quantity-input" appearance="outline" floatLabel="always">
+      <mat-label>
+        Quantità
+      </mat-label>
+
+      <button class="action-btn" (click)="changeQuantity(-1)" disableRipple matIconPrefix mat-button color="accent">
+        <mat-icon>remove</mat-icon>
+      </button>
+
+      <input readonly class="no-number-control" type="number" matInput [formControl]="quantityInput" />
+
+      <button class="action-btn" (click)="changeQuantity(1)" disableRipple matIconSuffix mat-button color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      @if(quantityInput.hasError('max')) {
+      <mat-error>Disponibilità: {{product.availability}}</mat-error>
+      }
+    </mat-form-field>
     }
   </mat-card-actions>
 </mat-card>

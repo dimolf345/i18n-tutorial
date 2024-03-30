@@ -76,3 +76,8 @@ h2 {
 .self-center {
   justify-self: center;
 }
+
+//MATERIAL OVVERIDES
+.mdc-button {
+  min-width: auto !important;
+}
