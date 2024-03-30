@@ -1,0 +1,23 @@
+<mat-card class="h-100 mat-typography ">
+  <img class="img" mat-card-image [src]="product.imageUrl" [alt]="product.altText" />
+  <mat-card-content>
+    <div class="flex flex-row card-heading">
+      <h3 class="mat-h3 bold color-primary m-0">{{product.name}}</h3>
+      <p class="body-1 bold m-0">{{product.price | currency: '€'}}</p>
+    </div>
+    <p>{{product.description}}</p>
+  </mat-card-content>
+  <mat-card-actions class="flex flex-center">
+
+    @if(!showQuantityInput()) {
+    <button (click)="showQuantityInput.set(true)" mat-flat-button color="accent">
+      <mat-icon>shopping_bag</mat-icon>
+      <span class="btn-text">Ordina</span>
+    </button>
+    }
+
+    @else {
+    <p>Quantity Input</p>
+    }
+  </mat-card-actions>
+</mat-card>

@@ -1,4 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$my-typography: mat.define-typography-config();
+@include mat.typography-hierarchy($my-typography);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--text-dark);
+}
+
+h2 {
+  margin: 2rem auto !important;
+}
+
+:root {
+  --color-primary: #3f51b5;
+  --color-accent: #e91e63;
+  --text-dark: #363030;
+}
+
+.mat-icon {
+  font-size: 20px !important;
+  margin: 0 !important;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-accent {
+  color: var(--color-accent);
+}
+
+.bold {
+  font-weight: 500 !important;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.self-center {
+  justify-self: center;
+}
