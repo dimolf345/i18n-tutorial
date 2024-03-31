@@ -11,14 +11,10 @@ import { OrderSummaryComponent } from '../order-summary/order-summary.component'
   .cart {
     display: grid;
     padding: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-  }
-
-  .address {
-    grid-column: 1/ span 2 !important;
   }
   
   `,

@@ -16,7 +16,7 @@
   <mat-card-actions class="flex flex-center">
 
     @if(!showQuantityInput()) {
-    <button (click)="showQuantityInput.set(true)" mat-flat-button color="accent">
+    <button (click)="changeQuantity(1)" mat-flat-button color="accent">
       <mat-icon>shopping_bag</mat-icon>
       <span class="btn-text">Ordina</span>
     </button>

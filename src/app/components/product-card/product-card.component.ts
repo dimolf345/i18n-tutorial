@@ -21,8 +21,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
-import { filter } from 'rxjs';
 import { MatChipsModule } from '@angular/material/chips';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'ng-product-card',
@@ -92,23 +92,25 @@ export class ProductCardComponent implements OnInit {
   showQuantityInput: WritableSignal<boolean> = signal(false);
   quantityInput!: FormControl<number | null>;
 
-  initializeFormEffect = effect(() => {
-    if (this.showQuantityInput()) {
-      this.quantityInput.setValue(1);
-    } else {
-      this.quantityInput.setValue(null);
-    }
-  });
-
   ngOnInit(): void {
-    this.quantityInput = this.#fb.control<number>(1, [
-      Validators.max(this.product.availability),
+    const cartItem = this.#cart.cart()[this.product.name];
+
+
+    if(cartItem) {
+      this.showQuantityInput.set(true);
+    }
+
+    this.quantityInput = this.#fb.control<number>(cartItem?.quantity || 0, [
+        Validators.max(this.product.availability),
     ]);
 
-    this.quantityInput.valueChanges
-      .pipe(filter(() => this.quantityInput.valid))
+
+    this.quantityInput.valueChanges.pipe(
+      filter(()=> this.quantityInput.valid)
+    )
       .subscribe((quantity) => {
         if (quantity) {
+          this.showQuantityInput.set(true);
           this.#cart.addToCart(this.product.name, {
             id: this.product.id,
             unitPrice: this.product.price,
@@ -116,17 +118,13 @@ export class ProductCardComponent implements OnInit {
           });
         } else {
           this.#cart.removeFromCart(this.product.name);
+          this.showQuantityInput.set(false);
         }
       });
   }
 
   changeQuantity(variation: number) {
     const newValue = this.quantityInput.value! + variation;
-
-    if (newValue === 0) {
-      this.showQuantityInput.set(false);
-      return;
-    }
 
     if (newValue > this.product.availability + 1) {
       return;

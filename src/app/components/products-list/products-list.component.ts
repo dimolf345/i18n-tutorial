@@ -77,6 +77,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   private checkProducts() {
+    console.log(this.#cart)
     if (!this.#cart.products) {
       this.products$ = this.#api
         .getProducts()

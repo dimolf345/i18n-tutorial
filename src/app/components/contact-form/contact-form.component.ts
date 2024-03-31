@@ -19,10 +19,11 @@ import { MatInputModule } from '@angular/material/input';
 
     .contact-form {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       justify-content: center;
       gap: 1rem;
     }
+
   `,
 })
 export class ContactFormComponent {
@@ -54,11 +55,11 @@ export class ContactFormComponent {
       ]),
       zip: this.#fb.control<string>('', [
         Validators.required,
-        Validators.pattern(/\d{4, }/),
+        Validators.pattern(/\d{4}/),
       ]),
       telephone: this.#fb.control<string>('', [
         Validators.required,
-        Validators.pattern(/\d{10, }/),
+        Validators.pattern(/\d{8}/),
       ]),
     });
   }

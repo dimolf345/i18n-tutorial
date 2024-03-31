@@ -3,33 +3,42 @@
   <mat-card-content>
     <form class="contact-form" [formGroup]="contactForm">
       <mat-form-field>
-        <mat-label>
-          Nome
-        </mat-label>
-        <input matInput type="text" formControlName="name">
+        <mat-label> Nome </mat-label>
+        <input matInput type="text" formControlName="name" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>
-          Cognome
-        </mat-label>
-        <input matInput type="text" formControlName="surname">
+        <mat-label> Cognome </mat-label>
+        <input matInput type="text" formControlName="surname" />
       </mat-form-field>
 
       <mat-form-field class="address">
-        <mat-label>
-          Indirizzo
-        </mat-label>
-        <input matInput type="text" formControlName="address">
+        <mat-label> Indirizzo </mat-label>
+        <input matInput type="text" formControlName="address" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Città </mat-label>
+        <input matInput type="text" formControlName="city" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Provincia </mat-label>
+        <input matInput type="text" formControlName="country" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CAP</mat-label>
+        <input matInput type="text" formControlName="zip">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>
-          Città
+          Recapito
         </mat-label>
-        <input matInput type="text" formControlName="city">
+        <span matTextPrefix>+39 &nbsp;</span>
+        <input matInput type="text" formControlName="telephone">
       </mat-form-field>
-
     </form>
   </mat-card-content>
 </mat-card>
