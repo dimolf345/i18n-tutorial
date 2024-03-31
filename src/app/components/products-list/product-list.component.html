@@ -1,4 +1,12 @@
-<h2 class="text-center color-primary">Choose your favourite italian cake</h2>
+@if(showLink()) {
+
+<a class="order-link" routerLink="cart" color="primary" mat-flat-button>Vai all'ordine</a>
+}
+@else {
+<h2 class="text-center color-primary">Ordina le tue torte preferite</h2>
+}
+
+
 <mat-card class="product-list-container mat-typography">
   <ng-container *ngIf="products$ | withLoading | async as products">
 

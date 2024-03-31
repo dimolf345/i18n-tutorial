@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { CartService } from '../../services/cart.service';
+import { MatBadgeModule } from '@angular/material/badge';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'ng-header',
   standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule],
+  imports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatBadgeModule,
+    RouterLink,
+  ],
   templateUrl: './header.component.html',
   styles: `
     header {
@@ -21,4 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
     }
   `,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  cart = inject(CartService);
+  showIcon = computed(() => !this.cart.isCartEmpty());
+  items = this.cart.cartItems;
+}

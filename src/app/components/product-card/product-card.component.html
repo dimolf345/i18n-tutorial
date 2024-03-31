@@ -6,6 +6,12 @@
       <p class="body-1 bold m-0">{{product.price | currency: '€'}}</p>
     </div>
     <p>{{product.description}}</p>
+    <h4 class="bold color-primary m-0">Ingredienti:</h4>
+    <mat-chip-listbox aria-label=" ingredienti">
+      @for(ingredient of product.ingredients; track $index) {
+      <mat-chip>{{ingredient | titlecase}}</mat-chip>
+      }
+    </mat-chip-listbox>
   </mat-card-content>
   <mat-card-actions class="flex flex-center">
 

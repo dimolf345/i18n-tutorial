@@ -1,14 +1,15 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ApiService } from '../../services/api.service';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { WithLoadingPipe } from '../../pipes/with-loading.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { delay, map, Observable, of, tap } from 'rxjs';
-import { Cake, CakeDTO } from '../../models/cake';
+import { Observable, of, tap } from 'rxjs';
+import { Cake } from '../../models/cake';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { mockCakes } from '../../models/mockData';
 import { CartService } from '../../services/cart.service';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'ng-products-list',
@@ -20,6 +21,8 @@ import { CartService } from '../../services/cart.service';
     WithLoadingPipe,
     MatProgressSpinnerModule,
     ProductCardComponent,
+    MatButtonModule,
+    RouterLink,
   ],
   templateUrl: './product-list.component.html',
   styles: `
@@ -43,7 +46,7 @@ import { CartService } from '../../services/cart.service';
       padding: 2rem;
       display: grid;
       max-width: 100%;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
 
@@ -52,6 +55,13 @@ import { CartService } from '../../services/cart.service';
       width: 100%;
       align-self: stretch;
     }
+
+    .order-link {
+      width: max-content;
+      margin: 30px auto;
+      display: block;
+      line-height: 36px;
+    }
   `,
 })
 export class ProductsListComponent implements OnInit {
@@ -59,6 +69,8 @@ export class ProductsListComponent implements OnInit {
   #cart = inject(CartService);
 
   products$!: Observable<Cake[]>;
+
+  showLink = computed(() => !this.#cart.isCartEmpty());
 
   ngOnInit(): void {
     this.checkProducts();

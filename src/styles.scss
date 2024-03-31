@@ -23,11 +23,6 @@ h2 {
   --text-dark: #363030;
 }
 
-.mat-icon {
-  font-size: 20px !important;
-  margin: 0 !important;
-}
-
 .w-100 {
   width: 100%;
 }
@@ -51,6 +46,11 @@ h2 {
 
 .grow {
   flex-grow: 1;
+}
+
+.no-link {
+  color: inherit;
+  text-decoration: none;
 }
 
 .text-center {
@@ -80,4 +80,9 @@ h2 {
 //MATERIAL OVVERIDES
 .mdc-button {
   min-width: auto !important;
+}
+
+.mat-icon {
+  font-size: 20px !important;
+  margin: 0 !important;
 }

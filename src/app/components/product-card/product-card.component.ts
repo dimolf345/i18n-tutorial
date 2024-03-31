@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Cake } from '../../models/cake';
 import { MatCardModule } from '@angular/material/card';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -20,6 +20,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
+import { filter } from 'rxjs';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'ng-product-card',
@@ -31,12 +34,12 @@ import {
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatChipsModule,
+    TitleCasePipe,
   ],
   templateUrl: './product-card.component.html',
   styles: `
-    mat-card {
-      padding-bottom: 1rem;
-    }
+
 
     .img {
       height: 200px;
@@ -46,7 +49,7 @@ import {
     .card-heading {
       align-items: center;
       justify-content: space-between;
-      padding: 0.5rem;
+      padding: 0.5rem 0;
       text-wrap: nowrap;
 
     }
@@ -58,7 +61,7 @@ import {
 
     mat-card-actions {
       margin-top: auto;
-      min-height: 90px;
+      min-height: 95px;
     }
 
     .action-btn {
@@ -80,7 +83,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardComponent implements OnInit {
-  private fb = inject(FormBuilder);
+  #fb = inject(FormBuilder);
+  #cart = inject(CartService);
 
   @Input({ required: true })
   product!: Cake;
@@ -90,16 +94,30 @@ export class ProductCardComponent implements OnInit {
 
   initializeFormEffect = effect(() => {
     if (this.showQuantityInput()) {
-      this.quantityInput.setValue(1, { emitEvent: false });
+      this.quantityInput.setValue(1);
     } else {
-      this.quantityInput.setValue(null, { emitEvent: false });
+      this.quantityInput.setValue(null);
     }
   });
 
   ngOnInit(): void {
-    this.quantityInput = this.fb.control<number>(1, [
+    this.quantityInput = this.#fb.control<number>(1, [
       Validators.max(this.product.availability),
     ]);
+
+    this.quantityInput.valueChanges
+      .pipe(filter(() => this.quantityInput.valid))
+      .subscribe((quantity) => {
+        if (quantity) {
+          this.#cart.addToCart(this.product.name, {
+            id: this.product.id,
+            unitPrice: this.product.price,
+            quantity,
+          });
+        } else {
+          this.#cart.removeFromCart(this.product.name);
+        }
+      });
   }
 
   changeQuantity(variation: number) {
@@ -113,7 +131,7 @@ export class ProductCardComponent implements OnInit {
     if (newValue > this.product.availability + 1) {
       return;
     } else {
-      this.quantityInput.setValue(newValue, { emitEvent: false });
+      this.quantityInput.setValue(newValue);
     }
   }
 }
