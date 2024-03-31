@@ -1,1 +1,9 @@
-<p>order-summary works!</p>
+<mat-card>
+  <table mat-table>
+
+    <ng-container></ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+  </table>
+</mat-card>

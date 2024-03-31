@@ -29,16 +29,34 @@
 
       <mat-form-field>
         <mat-label>CAP</mat-label>
-        <input matInput type="text" formControlName="zip">
+        <input matInput type="text" formControlName="zip" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>
-          Recapito
-        </mat-label>
+        <mat-label> Recapito </mat-label>
         <span matTextPrefix>+39 &nbsp;</span>
-        <input matInput type="text" formControlName="telephone">
+        <input matInput type="text" formControlName="telephone" />
       </mat-form-field>
     </form>
   </mat-card-content>
+  <mat-card-actions>
+    @if(!contactForm.disabled) {
+    <button (click)="saveInfo()" color="primary" mat-flat-button>
+      <mat-icon>save</mat-icon>
+      <span class="btn-text">Salva</span>
+    </button>
+    }
+
+    @else{
+    <button (click)="contactForm.enable()" color="primary" mat-flat-button>
+      <mat-icon>edit</mat-icon>
+      <span class="btn-text">Modifica</span>
+    </button>
+    }
+
+    <button (click)="saveInfo(true)" [disabled]="!contactForm.valid" color="accent" mat-flat-button>
+      <mat-icon>check</mat-icon>
+      <span class="btn-text">Conferma</span>
+    </button>
+  </mat-card-actions>
 </mat-card>

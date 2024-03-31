@@ -26,6 +26,10 @@ import { RouterLink } from '@angular/router';
   ],
   templateUrl: './product-list.component.html',
   styles: `
+    .title {
+      margin: 1rem !important;
+    }
+
     .product-list-container {
       width: 70vw;
       max-width: 800px;
@@ -43,7 +47,7 @@ import { RouterLink } from '@angular/router';
     }
 
     .product-list {
-      padding: 2rem;
+      padding: 1rem 2rem;
       display: grid;
       max-width: 100%;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -58,7 +62,7 @@ import { RouterLink } from '@angular/router';
 
     .order-link {
       width: max-content;
-      margin: 30px auto;
+      margin: 14px auto;
       display: block;
       line-height: 36px;
     }
