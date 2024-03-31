@@ -4,11 +4,21 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldDefaultOptions,
+} from '@angular/material/form-field';
+
+const defaultFormField: MatFormFieldDefaultOptions = {
+  floatLabel: 'auto',
+  appearance: 'outline',
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(),
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: defaultFormField },
   ],
 };

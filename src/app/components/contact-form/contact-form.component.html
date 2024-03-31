@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title class="color-primary">Inserisci i dettagli per la spedizione</mat-card-title>
+  <mat-card-content>
+    <form class="contact-form" [formGroup]="contactForm">
+      <mat-form-field>
+        <mat-label>
+          Nome
+        </mat-label>
+        <input matInput type="text" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>
+          Cognome
+        </mat-label>
+        <input matInput type="text" formControlName="surname">
+      </mat-form-field>
+
+      <mat-form-field class="address">
+        <mat-label>
+          Indirizzo
+        </mat-label>
+        <input matInput type="text" formControlName="address">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>
+          Città
+        </mat-label>
+        <input matInput type="text" formControlName="city">
+      </mat-form-field>
+
+    </form>
+  </mat-card-content>
+</mat-card>

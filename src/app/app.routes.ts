@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { ProductsListComponent } from './components/products-list/products-list.component';
-import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
+  // { path: '*', pathMatch: 'full', redirectTo: 'cart' },
   { path: '', component: ProductsListComponent },
-  { path: 'cart', component: OrderSummaryComponent },
+  { path: 'cart', component: CartComponent },
 ];
