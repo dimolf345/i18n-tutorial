@@ -27,6 +27,14 @@ body {
   height: 100%;
 }
 
+.mx-auto {
+  margin: 0 auto;
+}
+
+.block {
+  display: block !important;
+}
+
 .flex {
   display: flex !important;
 }
@@ -37,6 +45,11 @@ body {
 
 .flex-center {
   justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  justify-content: space-between;
   align-items: center;
 }
 

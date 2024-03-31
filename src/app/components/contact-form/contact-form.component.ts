@@ -10,7 +10,13 @@ import { IContactForm } from '../../models/contact';
 @Component({
   selector: 'ng-contact-form',
   standalone: true,
-  imports: [MatCardModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatIconModule],
+  imports: [
+    MatCardModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './contact-form.component.html',
   styles: `
     mat-card {
@@ -43,25 +49,29 @@ export class ContactFormComponent implements OnInit {
   #fb = inject(FormBuilder);
   #cart = inject(CartService);
 
-
   contactForm = this.createForm();
 
-
   ngOnInit(): void {
-    if(this.#cart.userData) {
+    if (this.#cart.userData) {
       this.contactForm.patchValue(this.#cart.userData);
     }
+
+    this.contactForm.statusChanges.subscribe((status) => {
+      if (status !== 'VALID') {
+        this.#cart.contactConfirmed.set(false);
+      }
+    });
   }
 
   saveInfo(disableForm: boolean = false) {
     const formValue = this.contactForm.value;
     this.#cart.userData = formValue;
 
-    if(disableForm) {
-      this.contactForm.disable()
+    if (disableForm) {
+      this.contactForm.disable();
+      this.#cart.contactConfirmed.set(true);
     }
   }
-
 
   private createForm() {
     return this.#fb.nonNullable.group<IContactForm>({
@@ -96,6 +106,4 @@ export class ContactFormComponent implements OnInit {
       ]),
     });
   }
-
-
 }

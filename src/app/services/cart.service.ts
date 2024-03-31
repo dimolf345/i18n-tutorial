@@ -17,7 +17,8 @@ export class CartService {
     Object.values(this.cart()).reduce((acc, curr) => acc + curr.quantity, 0)
   );
 
-  userData!: ContactFormData
+  userData!: ContactFormData;
+  contactConfirmed: WritableSignal<boolean> = signal(false);
 
   addToCart(productName: string, details: OrderItem) {
     this.cart.update((state) => ({
