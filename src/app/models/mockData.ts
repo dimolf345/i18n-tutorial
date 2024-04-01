@@ -1,4 +1,5 @@
 import { CakeDTO } from './cake';
+import { Cart } from './cart';
 
 export const mockCakes: CakeDTO[] = [
   {
@@ -50,3 +51,11 @@ export const mockCakes: CakeDTO[] = [
       'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2021/01/torta-gianduia-still-life-2.jpg',
   },
 ];
+
+export const mockOrder: Cart = {
+  ['Torta Paradiso']: {
+    id: 1,
+    unitPrice: 25.0,
+    quantity: 2,
+  },
+};
