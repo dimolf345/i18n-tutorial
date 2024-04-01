@@ -1,3 +1,5 @@
+import { ContactFormData } from './contact';
+
 export type OrderItem = {
   id: number;
   unitPrice: number;
@@ -6,4 +8,13 @@ export type OrderItem = {
 
 export type Cart = {
   [key: string]: OrderItem;
+};
+
+export type Order = {
+  data: ({
+    orderId: string;
+    productId: number;
+    quantity: number;
+    price: number;
+  } & ContactFormData)[];
 };

@@ -2,4 +2,5 @@
   <ng-contact-form />
   <ng-order-summary />
 </div>
-<button [disabled]="!enableBtn()" class="mx-auto block" mat-flat-button color="accent">Invia ordine</button>
+<button [disabled]="!enableBtn()" (click)="sendOrder()" class="mx-auto block" mat-flat-button color="accent">Invia
+  ordine</button>

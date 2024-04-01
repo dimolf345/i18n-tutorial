@@ -21,14 +21,19 @@ import { MatDividerModule } from '@angular/material/divider';
     }
 
     .total {
-      padding: 1rem 3rem 1rem 1rem;
+      padding: 1rem;
+    }
+
+    .price {
+      width: 10rem;
+      text-align: center;
     }
   `,
 })
 export class OrderSummaryComponent {
   #cart = inject(CartService);
 
-  tableColumns = ['no', 'name', 'quantity', 'price', 'total'];
+  tableColumns = ['name', 'quantity', 'price', 'total'];
   tableData: TableData[] = this.mapCartToTableData();
   total!: number;
 
@@ -37,7 +42,6 @@ export class OrderSummaryComponent {
     const data = Object.entries(this.#cart.cart()).reduce(
       (acc, [key, value], index) => {
         const tableRow = {
-          no: index + 1,
           name: key,
           quantity: value.quantity,
           price: value.unitPrice,

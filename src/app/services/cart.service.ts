@@ -1,6 +1,6 @@
 import { computed, Injectable, signal, WritableSignal } from '@angular/core';
 import { Cake } from '../models/cake';
-import { Cart, OrderItem } from '../models/cart';
+import { Cart, Order, OrderItem } from '../models/cart';
 import { ContactFormData, IContactForm } from '../models/contact';
 
 @Injectable({
@@ -32,5 +32,22 @@ export class CartService {
       const { [removedProduct]: deletedProduct, ...otherProducts } = state;
       return otherProducts;
     });
+  }
+
+  getOrderData(): Order | undefined {
+    if (this.contactConfirmed() && !this.isCartEmpty()) {
+      const dataObject = Object.values(this.cart()).map((item) => ({
+        orderId: 'INCREMENT',
+        productId: item.id,
+        quantity: item.quantity,
+        price: item.unitPrice,
+        ...this.userData,
+      }));
+
+      return {
+        data: dataObject,
+      };
+    }
+    return;
   }
 }

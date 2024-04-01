@@ -56,10 +56,12 @@ export class ContactFormComponent implements OnInit {
       this.contactForm.patchValue(this.#cart.userData);
     }
 
+    if (this.#cart.contactConfirmed()) {
+      this.contactForm.disable();
+    }
+
     this.contactForm.statusChanges.subscribe((status) => {
-      if (status !== 'VALID') {
-        this.#cart.contactConfirmed.set(false);
-      }
+      this.#cart.contactConfirmed.set(status === 'VALID');
     });
   }
 
