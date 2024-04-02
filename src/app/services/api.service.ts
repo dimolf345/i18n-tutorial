@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { delay, map, Observable, of, timer } from 'rxjs';
+import { delay, map, Observable, of, throwError, timer } from 'rxjs';
 import { Cake } from '../models/cake';
 import { environment } from '../../environments/environment';
 import { mockCakes } from '../models/mockData';
@@ -11,7 +11,9 @@ import { Order } from '../models/cart';
 })
 export class ApiService {
   #http = inject(HttpClient);
-  #API_URL = environment.API_URL;
+  #API_URL = import.meta.env.NG_APP_API_URL;
+
+  test = this.#API_URL;
 
   getProducts(online: boolean = false): Observable<Cake[]> {
     const apiCall = online
@@ -34,7 +36,10 @@ export class ApiService {
     );
   }
 
-  postOrder(order: Order, online: boolean = false) {
+  postOrder(
+    order: Order,
+    online: boolean = false
+  ): Observable<{ created: number }> | Observable<never> {
     const apiCall = online
       ? this.#http.post<Order>(`${this.#API_URL}?sheet=orders`, order)
       : of({ created: order.data.length });

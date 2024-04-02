@@ -1,5 +1,5 @@
 import { CakeDTO } from './cake';
-import { Cart } from './cart';
+import { Cart, Order } from './cart';
 
 export const mockCakes: CakeDTO[] = [
   {
@@ -52,10 +52,13 @@ export const mockCakes: CakeDTO[] = [
   },
 ];
 
-export const mockOrder: Cart = {
-  ['Torta Paradiso']: {
-    id: 1,
-    unitPrice: 25.0,
-    quantity: 2,
-  },
+export const mockOrder: Order = {
+  data: [
+    {
+      orderId: 'INCREMENT',
+      productId: 5,
+      quantity: 2,
+      price: 20.0,
+    },
+  ],
 };

@@ -42,4 +42,5 @@ testem.log
 Thumbs.db
 
 #API URL
-src/environments/environment.development.ts
+src/environments/*.ts
+.env

@@ -11,7 +11,8 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
-import { mockOrder } from '../../models/mockData';
+import { orderDialogConfig } from '../order-dialog/order-dialog.config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ng-cart',
@@ -38,34 +39,31 @@ import { mockOrder } from '../../models/mockData';
 })
 export class CartComponent {
   #cart = inject(CartService);
-  #api = inject(ApiService);
   #matDialog = inject(MatDialog);
+  #router = inject(Router);
 
   enableBtn = computed(
     () => this.#cart.contactConfirmed() && this.#cart.cartItems() > 0
   );
 
-  ngOnInit() {
-    this.#matDialog.open<OrderDialogComponent>(OrderDialogComponent, {
-      disableClose: true,
-      data: {
-        order: mockOrder,
-      },
-      position: {
-        top: '10%',
-      },
-      minWidth: 300,
-      maxWidth: '90vw',
-      minHeight: 300,
-    });
-  }
-
   sendOrder() {
     const order = this.#cart.getOrderData();
-    const dialog =
-      this.#matDialog.open<OrderDialogComponent>(OrderDialogComponent);
-    // if (order) {
-    //   this.#api.postOrder(order).subscribe((res) => console.log(res));
-    // }
+    const { userData } = this.#cart;
+
+    const dialog = this.#matDialog.open<OrderDialogComponent>(
+      OrderDialogComponent,
+      {
+        ...orderDialogConfig,
+        data: {
+          order,
+          userData,
+        },
+      }
+    );
+
+    dialog.afterClosed().subscribe((redirect) => {
+      this.#cart.clearCart();
+      redirect && this.#router.navigate(['']);
+    });
   }
 }

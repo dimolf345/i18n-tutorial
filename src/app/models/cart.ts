@@ -12,7 +12,7 @@ export type Cart = {
 
 export type Order = {
   data: ({
-    orderId: string;
+    orderId: 'INCREMENT';
     productId: number;
     quantity: number;
     price: number;

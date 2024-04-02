@@ -37,7 +37,7 @@ export class CartService {
   getOrderData(): Order | undefined {
     if (this.contactConfirmed() && !this.isCartEmpty()) {
       const dataObject = Object.values(this.cart()).map((item) => ({
-        orderId: 'INCREMENT',
+        orderId: 'INCREMENT' as 'INCREMENT',
         productId: item.id,
         quantity: item.quantity,
         price: item.unitPrice,
@@ -49,5 +49,11 @@ export class CartService {
       };
     }
     return;
+  }
+
+  clearCart() {
+    this.userData = {};
+    this.contactConfirmed.set(false);
+    this.cart.set({});
   }
 }

@@ -1,1 +1,41 @@
-<p>order-dialog works!</p>
+<h3 class="text-center" mat-dialog-title>
+  Esito ordine
+</h3>
+<ng-container *ngIf="(response$ | withLoading | async) as response">
+
+
+  @if(response.loading) {
+  <mat-dialog-content class="flex flex-center">
+    <mat-spinner color="primary"></mat-spinner>
+  </mat-dialog-content>
+  }
+
+  @if(response.value) {
+  <mat-dialog-content class="flex flex-center flex-col wrap">
+    <img width="300" src="assets/shipment.svg" alt="Ordine in transito">
+    <p>La tue torte preferite arriveranno presto!</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+
+    <button mat-flat-button color="primary" [mat-dialog-close]="true">Ordina ancora</button>
+
+    <a class="no-link" color="accent" mat-flat-button href="https://github.com/dimolf345/i18n-tutorial">Bello questo
+      progetto!</a>
+
+  </mat-dialog-actions>
+  }
+
+  @if(response.error) {
+  <mat-dialog-content class="flex flex-center flex-col wrap">
+    <img width="300" src="assets/error.svg" alt="Ordine in transito">
+    <p>Ooops! Qualcosa è andato storto!</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+
+    <button mat-flat-button color="primary" [mat-dialog-close]="true">Esci</button>
+
+    <button (click)="retry()" class="no-link" color="accent" mat-flat-button>Riprova</button>
+
+  </mat-dialog-actions>
+  }
+</ng-container>

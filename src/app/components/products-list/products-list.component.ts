@@ -31,7 +31,7 @@ import { RouterLink } from '@angular/router';
     }
 
     .product-list-container {
-      width: 70vw;
+      width: 80vw;
       max-width: 800px;
       margin: 0 auto;
       min-width: 300px;
@@ -81,7 +81,8 @@ export class ProductsListComponent implements OnInit {
   }
 
   private checkProducts() {
-    console.log(this.#cart)
+    console.log(this.#api.test);
+
     if (!this.#cart.products) {
       this.products$ = this.#api
         .getProducts()
@@ -91,8 +92,3 @@ export class ProductsListComponent implements OnInit {
     }
   }
 }
-
-//  cakes.map((cake) => ({
-//         ...cake,
-//         ingredients: cake.ingredients.split(','),
-//       }))
