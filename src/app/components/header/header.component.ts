@@ -28,6 +28,12 @@ import { RouterLink } from '@angular/router';
       top: 50%;
       transform: translateY(-50%);
     }
+
+    @media screen and (min-width: 600px) {
+      .only-md {
+        display: none;
+      }
+    }
   `,
 })
 export class HeaderComponent {

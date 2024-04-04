@@ -29,10 +29,24 @@ import { Router } from '@angular/router';
   .cart {
     display: grid;
     padding: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+
+
+    @media screen and (max-width: 800px) {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+
+      .first-on-mobile {
+        order: -1;
+      }
+    }
+  }
+
+  button {
+    margin-bottom: 2rem;
   }
   
   `,
