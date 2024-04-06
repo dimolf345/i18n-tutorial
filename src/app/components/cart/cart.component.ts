@@ -4,15 +4,10 @@ import { OrderSummaryComponent } from '../order-summary/order-summary.component'
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart.service';
-import { ApiService } from '../../services/api.service';
-import {
-  MatDialog,
-  MatDialogConfig,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { orderDialogConfig } from '../order-dialog/order-dialog.config';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'ng-cart',
@@ -23,6 +18,7 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    RouterLink,
   ],
   templateUrl: './cart.component.html',
   styles: `
@@ -47,6 +43,11 @@ import { Router } from '@angular/router';
 
   button {
     margin-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 1rem;
   }
   
   `,

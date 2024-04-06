@@ -15,7 +15,7 @@ export class ApiService {
 
   test = this.#API_URL;
 
-  getProducts(online: boolean = false): Observable<Cake[]> {
+  getProducts(online: boolean = true): Observable<Cake[]> {
     const apiCall = online
       ? this.#http.get<Cake[]>(this.#API_URL)
       : of(mockCakes);
