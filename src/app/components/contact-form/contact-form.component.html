@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title class="color-primary">Inserisci i dettagli per la spedizione</mat-card-title>
   <mat-card-content>
-    <form class="contact-form" [formGroup]="contactForm">
+    <form autocomplete="on" class="contact-form" [formGroup]="contactForm">
       <mat-form-field>
         <mat-label> Nome </mat-label>
         <input matInput type="text" formControlName="name" />
