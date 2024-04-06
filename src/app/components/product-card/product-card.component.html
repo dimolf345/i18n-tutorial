@@ -3,10 +3,10 @@
   <mat-card-content>
     <div class="flex flex-row card-heading">
       <h3 class="mat-h3 bold color-primary m-0">{{product.name}}</h3>
-      <p class="body-1 bold m-0">{{product.price | currency: '€'}}</p>
+      <p class="body-1 bold m-0">{{product.price | currency: currencyType }}</p>
     </div>
     <p>{{product.description}}</p>
-    <h4 class="bold color-primary m-0">Ingredienti:</h4>
+    <h4 i18n="@@ingredients" class="bold color-primary m-0">Ingredienti:</h4>
     <mat-chip-listbox aria-label=" ingredienti">
       @for(ingredient of product.ingredients; track $index) {
       <mat-chip>{{ingredient | titlecase}}</mat-chip>
@@ -18,13 +18,13 @@
     @if(!showQuantityInput()) {
     <button (click)="changeQuantity(1)" mat-flat-button color="accent">
       <mat-icon>shopping_bag</mat-icon>
-      <span class="btn-text">Ordina</span>
+      <span i18n="@@addToCart" class="btn-text">Ordina</span>
     </button>
     }
 
     @else {
     <mat-form-field class="quantity-input">
-      <mat-label>
+      <mat-label i18n="quantity label|The label of the input indicating how many product to buy@@qty">
         Quantità
       </mat-label>
 
@@ -39,7 +39,7 @@
       </button>
 
       @if(quantityInput.hasError('max')) {
-      <mat-error>Disponibilità: {{product.availability}}</mat-error>
+      <mat-error i18n="@@availability">Disponibilità: {{product.availability}}</mat-error>
       }
     </mat-form-field>
     }

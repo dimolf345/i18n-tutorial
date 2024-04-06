@@ -1,0 +1,15 @@
+{
+  "locale": "it",
+  "translations": {
+    "project-name": " Guida i18n per Angular ",
+    "store-name": " Pasticceria da Peppino ",
+    "carrello": "vai al carrello",
+    "ingredients": "Ingredienti:",
+    "addToCart": "Ordina",
+    "qty": " Quantità ",
+    "availability": "Disponibilità: {$INTERPOLATION}",
+    "banner": "Ordina le tue torte preferite",
+    "products-list": "lista prodotti",
+    "currency": "EUR"
+  }
+}

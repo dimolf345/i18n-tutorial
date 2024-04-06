@@ -1,0 +1,15 @@
+{
+  "locale": "it",
+  "translations": {
+    "project-name": " Angular I18n Tutorial ",
+    "store-name": " Peppino's Bakery ",
+    "carrello": "Go to cart",
+    "ingredients": "Ingredients:",
+    "addToCart": "Buy",
+    "qty": " Quantity ",
+    "availability": "Availability: {$INTERPOLATION}",
+    "banner": "Choose your favourite italian cake",
+    "products-list": "cakes' list",
+    "currency": "USD"
+  }
+}
