@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && npm run netlify-fix",
+    "netlify-fix": "cp src/_redirects dist/i18n-tutorial/browser/_redirects",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

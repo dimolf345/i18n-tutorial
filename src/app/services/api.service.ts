@@ -13,7 +13,9 @@ export class ApiService {
   #http = inject(HttpClient);
   #API_URL = import.meta.env.NG_APP_API_URL;
 
-  test = this.#API_URL;
+  get apiUrl() {
+    return this.#API_URL;
+  }
 
   getProducts(online: boolean = false): Observable<Cake[]> {
     const apiCall = online

@@ -1,5 +1,15 @@
 <mat-toolbar color="primary" class="no-wrap">
   <header class="w-100">
+    <div class="language-selector">
+      <button mat-button [matMenuTriggerFor]="language">Lingua</button>
+      <mat-menu #language="matMenu">
+        <a mat-button color="primary" class="no-link block text-center" (click)="changeLanguage($event, 'it')"
+          href="/it">IT</a>
+        <a mat-button color="primary" class="no-link block text-center" (click)="changeLanguage($event, 'en')"
+          href="/en">EN</a>
+      </mat-menu>
+    </div>
+
     <h1 class="text-center">
       <a routerLink="" class="no-link">
         <span i18n="project-name|The scope of the project@@project-name">

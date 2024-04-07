@@ -80,11 +80,9 @@ export class ProductsListComponent implements OnInit {
   }
 
   private checkProducts() {
-    console.log(this.#api.test);
-
     if (!this.#cart.products) {
       this.products$ = this.#api
-        .getProducts()
+        .getProducts(true)
         .pipe(tap((data) => (this.#cart.products = data)));
     } else {
       this.products$ = of(this.#cart.products);
