@@ -1,4 +1,4 @@
-<h3 class="text-center" mat-dialog-title>
+<h3 i18n="@@orderDialog-title" class="text-center" mat-dialog-title>
   Esito ordine
 </h3>
 <ng-container *ngIf="(response$ | withLoading | async) as response">
@@ -12,14 +12,16 @@
 
   @if(response.value) {
   <mat-dialog-content class="flex flex-center flex-col wrap">
-    <img width="300" src="assets/shipment.svg" alt="Ordine in transito">
+    <img width="300" src="assets/shipment.svg" i18n-alt="@@orderDialog-shipmentAltText" alt="Ordine in transito">
     <p>La tue torte preferite arriveranno presto!</p>
   </mat-dialog-content>
   <mat-dialog-actions align="center">
 
-    <button mat-flat-button color="primary" [mat-dialog-close]="true">Ordina ancora</button>
+    <button i18n="@@orderDialog-newOrderBtn" mat-flat-button color="primary" [mat-dialog-close]="true">Ordina
+      ancora</button>
 
-    <a class="no-link" color="accent" mat-flat-button href="https://github.com/dimolf345/i18n-tutorial">Bello questo
+    <a class="no-link" i18n="@@orderDialog-github" color="accent" mat-flat-button
+      href="https://github.com/dimolf345/i18n-tutorial">Bello questo
       progetto!</a>
 
   </mat-dialog-actions>
@@ -27,14 +29,14 @@
 
   @if(response.error) {
   <mat-dialog-content class="flex flex-center flex-col wrap">
-    <img width="300" src="assets/error.svg" alt="Ordine in transito">
-    <p>Ooops! Qualcosa è andato storto!</p>
+    <img width="300" src="assets/error.svg" i18n-alt="@@orderDialog-errorAltText" alt="Ordine in transito">
+    <p i18="@@orderDialog-errorMessage">Ooops! Qualcosa è andato storto!</p>
   </mat-dialog-content>
   <mat-dialog-actions align="center">
 
-    <button mat-flat-button color="primary" [mat-dialog-close]="true">Esci</button>
+    <button i18n="@@exiBtn" mat-flat-button color="primary" [mat-dialog-close]="true">Esci</button>
 
-    <button (click)="retry()" class="no-link" color="accent" mat-flat-button>Riprova</button>
+    <button i18n="@@retryBtn" (click)="retry()" class="no-link" color="accent" mat-flat-button>Riprova</button>
 
   </mat-dialog-actions>
   }

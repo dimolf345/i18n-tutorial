@@ -22,7 +22,7 @@ export class ApiService {
       ? this.#http.get<Cake[]>(this.#API_URL)
       : of(mockCakes);
 
-    const simulatedDelay = online ? 0 : 0;
+    const simulatedDelay = online ? 0 : 100;
 
     return apiCall.pipe(
       delay(simulatedDelay),

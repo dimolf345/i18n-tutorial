@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="no-wrap">
   <header class="w-100">
     <div class="language-selector">
-      <button mat-button [matMenuTriggerFor]="language">Lingua</button>
+      <button i18n="@@language-selector" mat-button [matMenuTriggerFor]="language">Lingua</button>
       <mat-menu #language="matMenu">
         <a mat-button color="primary" class="no-link block text-center" (click)="changeLanguage($event, 'it')"
           href="/it">IT</a>
