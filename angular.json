@@ -5,6 +5,14 @@
   "projects": {
     "i18n-tutorial": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "it",
+        "locales": {
+          "en": {
+            "translation": "src/locale/en.json"
+          }
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
@@ -20,6 +28,8 @@
           "builder": "@ngx-env/builder:application",
           "options": {
             "outputPath": "dist/i18n-tutorial",
+            "localize": true,
+            "i18nMissingTranslation": "warning",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -38,6 +48,11 @@
             "scripts": []
           },
           "configurations": {
+            "en": {
+              "localize": [
+                "en"
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -75,6 +90,9 @@
             },
             "development": {
               "buildTarget": "i18n-tutorial:build:development"
+            },
+            "en": {
+              "browserTarget": "i18n-tutorial:build:development,en"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +100,9 @@
         "extract-i18n": {
           "builder": "@ngx-env/builder:extract-i18n",
           "options": {
-            "buildTarget": "i18n-tutorial:build"
+            "buildTarget": "i18n-tutorial:build",
+            "format": "json",
+            "outputPath": "src/locale"
           }
         },
         "test": {

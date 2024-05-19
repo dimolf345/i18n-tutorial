@@ -91,23 +91,21 @@ export class ProductCardComponent implements OnInit {
 
   showQuantityInput: WritableSignal<boolean> = signal(false);
   quantityInput!: FormControl<number | null>;
+  currencyType = $localize`:@@currency:EUR`;
 
   ngOnInit(): void {
     const cartItem = this.#cart.cart()[this.product.name];
 
-
-    if(cartItem) {
+    if (cartItem) {
       this.showQuantityInput.set(true);
     }
 
     this.quantityInput = this.#fb.control<number>(cartItem?.quantity || 0, [
-        Validators.max(this.product.availability),
+      Validators.max(this.product.availability),
     ]);
 
-
-    this.quantityInput.valueChanges.pipe(
-      filter(()=> this.quantityInput.valid)
-    )
+    this.quantityInput.valueChanges
+      .pipe(filter(() => this.quantityInput.valid))
       .subscribe((quantity) => {
         if (quantity) {
           this.showQuantityInput.set(true);

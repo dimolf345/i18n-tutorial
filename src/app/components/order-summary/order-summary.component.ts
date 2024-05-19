@@ -37,6 +37,9 @@ export class OrderSummaryComponent {
   tableData: TableData[] = this.mapCartToTableData();
   total!: number;
 
+  cartItems = this.#cart.cartItems;
+  currencyType = $localize`:@@currency:EUR`;
+
   private mapCartToTableData() {
     let orderTotalPrice = 0;
     const data = Object.entries(this.#cart.cart()).reduce(

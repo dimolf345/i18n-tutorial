@@ -1,39 +1,40 @@
 <mat-card>
-  <mat-card-title class="color-primary">Inserisci i dettagli per la spedizione</mat-card-title>
+  <mat-card-title i18n="@@contactFormTitle" class="color-primary">Inserisci i dettagli per la
+    spedizione</mat-card-title>
   <mat-card-content>
     <form autocomplete="on" class="contact-form" [formGroup]="contactForm">
       <mat-form-field>
-        <mat-label> Nome </mat-label>
+        <mat-label i18n="@@nameField"> Nome </mat-label>
         <input matInput type="text" formControlName="name" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Cognome </mat-label>
+        <mat-label i18n="@@surnameField"> Cognome </mat-label>
         <input matInput type="text" formControlName="surname" />
       </mat-form-field>
 
       <mat-form-field class="address">
-        <mat-label> Indirizzo </mat-label>
+        <mat-label i18n="@@addressField"> Indirizzo </mat-label>
         <input matInput type="text" formControlName="address" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Città </mat-label>
+        <mat-label i18n="@@city"> Città </mat-label>
         <input matInput type="text" formControlName="city" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Provincia </mat-label>
+        <mat-label i18n="@@country"> Provincia </mat-label>
         <input matInput type="text" formControlName="country" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>CAP</mat-label>
+        <mat-label i18n="@@zip">CAP</mat-label>
         <input matInput type="text" formControlName="zip" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Recapito </mat-label>
+        <mat-label i18n="@@telephone"> Recapito </mat-label>
         <span matTextPrefix>+39 &nbsp;</span>
         <input matInput type="text" formControlName="telephone" />
       </mat-form-field>
@@ -43,20 +44,20 @@
     @if(!contactForm.disabled) {
     <button (click)="saveInfo()" color="primary" mat-flat-button>
       <mat-icon>save</mat-icon>
-      <span class="btn-text">Salva</span>
+      <span i18n="@@saveFormBtn" class="btn-text">Salva</span>
     </button>
     }
 
     @else{
     <button (click)="contactForm.enable()" color="primary" mat-flat-button>
       <mat-icon>edit</mat-icon>
-      <span class="btn-text">Modifica</span>
+      <span i18n="@@editFormBtn" class="btn-text">Modifica</span>
     </button>
     }
 
     <button (click)="saveInfo(true)" [disabled]="!contactForm.valid" color="accent" mat-flat-button>
       <mat-icon>check</mat-icon>
-      <span class="btn-text">Conferma</span>
+      <span i18n="@@confirmFormBtn" class="btn-text">Conferma</span>
     </button>
   </mat-card-actions>
 </mat-card>

@@ -1,10 +1,12 @@
 <a class="back-link" mat-button color="primary" routerLink="">
   <mat-icon>keyboard_arrow_left</mat-icon>
+  <span i18n="@@backToProductList">Torna ai prodotti</span>
   <span>Torna ai prodotti</span>
 </a>
 <div class="cart">
   <ng-contact-form />
   <ng-order-summary class="first-on-mobile" />
 </div>
-<button [disabled]="!enableBtn()" (click)="sendOrder()" class="mx-auto block" mat-flat-button color="accent">Invia
+<button i18n="@@sendOrder" [disabled]="!enableBtn()" (click)="sendOrder()" class="mx-auto block" mat-flat-button
+  color="accent">Invia
   ordine</button>

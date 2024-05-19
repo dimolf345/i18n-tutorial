@@ -5,6 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { CartService } from '../../services/cart.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { RouterLink } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { DOCUMENT } from '@angular/common';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'ng-header',
@@ -15,11 +18,20 @@ import { RouterLink } from '@angular/router';
     MatButtonModule,
     MatBadgeModule,
     RouterLink,
+    MatMenuModule,
+    MatButtonModule,
   ],
   templateUrl: './header.component.html',
   styles: `
     header {
       position: relative;
+    }
+
+    .language-selector {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -1rem;
     }
 
     .cart-icon {
@@ -37,7 +49,17 @@ import { RouterLink } from '@angular/router';
   `,
 })
 export class HeaderComponent {
-  cart = inject(CartService);
-  showIcon = computed(() => !this.cart.isCartEmpty());
-  items = this.cart.cartItems;
+  #document = inject(DOCUMENT);
+  #cart = inject(CartService);
+  #language = inject(LanguageService);
+
+  showIcon = computed(() => !this.#cart.isCartEmpty());
+  items = this.#cart.cartItems;
+
+  changeLanguage(event: MouseEvent, language: 'it' | 'en') {
+    event.preventDefault();
+    this.#language.setLanguage(language);
+
+    this.#document.location.href = `/${language}`;
+  }
 }

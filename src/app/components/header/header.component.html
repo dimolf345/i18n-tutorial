@@ -1,19 +1,31 @@
 <mat-toolbar color="primary" class="no-wrap">
   <header class="w-100">
+    <div class="language-selector">
+      <button i18n="@@language-selector" mat-button [matMenuTriggerFor]="language">Lingua</button>
+      <mat-menu #language="matMenu">
+        <a mat-button color="primary" class="no-link block text-center" (click)="changeLanguage($event, 'it')"
+          href="/it">IT</a>
+        <a mat-button color="primary" class="no-link block text-center" (click)="changeLanguage($event, 'en')"
+          href="/en">EN</a>
+      </mat-menu>
+    </div>
+
     <h1 class="text-center">
       <a routerLink="" class="no-link">
-        <span>
-          Angular i18n tutorial
+        <span i18n="project-name|The scope of the project@@project-name">
+          Guida i18n per Angular
         </span>
-        <br class="only-md" />
-        <span>
+        <br />
+        <span i18n="store-name|The name of the cake-store@@store-name">
           Pasticceria da Peppino
         </span>
       </a>
     </h1>
 
     @if(showIcon()) {
-    <a routerLink="/cart" class="cart-icon" mat-button>
+    <a title="vai al carrello" aria-label="vai al carrello"
+      i18n-aria-label="cart-icon|The text-helper for the icon cart@@carrello" i18n-title="@@carrello" routerLink="/cart"
+      class="cart-icon" mat-button>
       <mat-icon [matBadgeOverlap]="false" matBadgeColor="accent" matBadgePosition="after"
         [matBadge]="items()">shopping_cart</mat-icon>
     </a>

@@ -1,9 +1,10 @@
 @if(showLink()) {
 
-<a class="order-link" routerLink="cart" color="primary" mat-flat-button>Vai all'ordine</a>
+<a i18n="@@goToCart" class="order-link" routerLink="cart" color="primary" mat-flat-button>Vai all'ordine</a>
 }
 @else {
-<h2 class="text-center color-primary title">Ordina le tue torte preferite</h2>
+<h2 i18n="welcome-message|A invite to choose a product@@banner" class="text-center color-primary title">Ordina le tue
+  torte preferite</h2>
 }
 
 
@@ -18,7 +19,7 @@
 
     @if (products.value) {
 
-    <ul class="product-list">
+    <ul i18n-aria-label="@@products-list" aria-label="lista prodotti" class="product-list">
       @for (product of products.value; track product.id) {
       <ng-product-card class="self-center product" role="listitem" [product]="product" />
       }

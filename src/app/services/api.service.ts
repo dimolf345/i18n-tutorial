@@ -13,14 +13,16 @@ export class ApiService {
   #http = inject(HttpClient);
   #API_URL = import.meta.env.NG_APP_API_URL;
 
-  test = this.#API_URL;
+  get apiUrl() {
+    return this.#API_URL;
+  }
 
   getProducts(online: boolean = true): Observable<Cake[]> {
     const apiCall = online
       ? this.#http.get<Cake[]>(this.#API_URL)
       : of(mockCakes);
 
-    const simulatedDelay = online ? 0 : 0;
+    const simulatedDelay = online ? 0 : 100;
 
     return apiCall.pipe(
       delay(simulatedDelay),
